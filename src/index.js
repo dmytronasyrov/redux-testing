@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Router, Route, browserHistory } from 'react-router'
 
-import reducers from './reducers';
+import reducers from './reducers'
 
+import RequireAuth from './components/RequireAuth'
 import App from './components/App';
 import Resources from './components/Resources'
 
@@ -15,7 +16,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <Route path="resources" component={ Resources }/>
+        <Route path="resources" component={ RequireAuth(Resources) }/>
       </Route>
     </Router>
   </Provider>
